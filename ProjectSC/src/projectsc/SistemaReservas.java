@@ -4,6 +4,8 @@
  */
 package projectsc;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author alvarados
@@ -27,7 +29,45 @@ public class SistemaReservas {
         }
         return null; // No hay salas disponibles con esa capacidad
     }
+    
+    // Método para cancelar una reserva por ID de sala
+    public void cancelarReserva(String idSala) {
+        for (salaReuniones sala : salas) {
+            if (sala.getIdSala().equals(idSala)) {
+                sala.cancelarReserva();
+                return;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "No se encontró la sala con ID: " + idSala, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    // Método para mostrar salas disponibles
+    public void mostrarSalasDisponibles() {
+        StringBuilder mensaje = new StringBuilder("Salas disponibles:\n");
+
+        for (salaReuniones sala : salas) {
+            if (sala.isDisponibilidad()) {
+                mensaje.append("ID: ").append(sala.getIdSala())
+                       .append(" | Capacidad: ").append(sala.getCapacidad())
+                       .append(" | Ubicación: ").append(sala.getUbicacion()).append("\n");
+            }
+        }
+
+        JOptionPane.showMessageDialog(null, mensaje.toString(), "Salas Disponibles", JOptionPane.INFORMATION_MESSAGE);
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
     
 
 
