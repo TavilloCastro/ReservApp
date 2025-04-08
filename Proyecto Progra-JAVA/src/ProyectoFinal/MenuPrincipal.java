@@ -11,6 +11,8 @@ public class MenuPrincipal {
     //Llamados a las clases para usar los metodos:    
     Reservacion reserva = new Reservacion();
     Empleado empleado = new Empleado("", "", "", "");
+    Auditorio auditorio = new Auditorio();
+    MostrarReservas mostrarReservas = new MostrarReservas(auditorio);
 
     //Metodo para terminar el programa:
     private void salir() {
@@ -33,11 +35,11 @@ public class MenuPrincipal {
                 menuInicial();
                 break;
             case 2:
-                reserva.cancelarReservas();//Llama al metodo para cancelar reservas. 
+               //Llama al metodo para cancelar reservas. 
                 menuInicial();
                 break;
             case 3:
-                reserva.mostrarReservas();//Llama al metodo para mostrar las reservas. 
+                mostrarReservas.mostrarReservas();//Llama al metodo para mostrar las reservas. 
                 menuInicial();
                 break;
             case 4:
