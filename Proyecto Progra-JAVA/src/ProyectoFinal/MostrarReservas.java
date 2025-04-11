@@ -10,7 +10,7 @@ public class MostrarReservas {
 
        //Menu para mostrar reservas
     public void mostrarReservas() {
-        int opcion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la opcion que desea consultar: \n[ 1 ] Reservaciones de Parqueo. \n[ 2 ] Reservaciones de Cubiculos.\n[ 3 ] Reservaciones de Auditorio.\n[ 4 ] Reservaciones de Salon Insonoro.\n[ 5 ] Reservaciones de Zonas Recreativas.\n[ 6 ] Regreser al menu anterior."));
+        int opcion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la opcion que desea consultar: \n 1. - Reservaciones de Parqueo. \n 2. - Reservaciones de Cubiculos.\n 3. - Reservaciones de Auditorio.\n 4. - Reservaciones de Salon Insonoro.\n 5. - Reservaciones de Zonas Recreativas.\n 6. - Regreser al menu anterior."));
         switch (opcion) {
             case 1:
                 //reservaciones parqueo
@@ -34,7 +34,7 @@ public class MostrarReservas {
             case 6:
                 return;
             default:
-                JOptionPane.showMessageDialog(null, "Opcion incorrecta. Por favor intentelo nuevamente. \nDebe seleccionar una opcion del 1 al 6.");
+                JOptionPane.showMessageDialog(null, "⚠️Opcion incorrecta. Por favor intentelo nuevamente.⚠️ \nDebe seleccionar una opcion del 1 al 6.");
                 mostrarReservas();
                 break;
         }
@@ -51,10 +51,15 @@ public class MostrarReservas {
         for (int i = 0; i < auditorio.getContadorReservas(); i++) {
             if (auditorio.getReservas()[i][0].equals(idEmpleado)) {
                 reservaEncontrada = true;
+                
+                String diaTexto = auditorio.getReservas()[i][4];
+                int numeroDia = Integer.parseInt(diaTexto.split(" ")[1]);
+                String nombreDelDia = auditorio.nombreDia(numeroDia);
+                
                 infoReserva = "Informacion de la reserva " + idEmpleado + ":"
                         + "\n- Nombre: " + auditorio.getReservas()[i][1]
                         + "\n- Actividad: " + auditorio.getReservas()[i][3]
-                        + "\n- Dia: " + auditorio.getReservas()[i][4]
+                        + "\n- Dia: " + nombreDelDia
                         + "\n- Cantidad de Espacios: " + auditorio.getReservas()[i][2];
                         
             }

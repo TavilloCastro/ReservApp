@@ -1,6 +1,3 @@
-/*
-Informacion del Auditorio. 
- */
 package ProyectoFinal;
 
 import javax.swing.JOptionPane;
@@ -42,8 +39,8 @@ public class Auditorio {
         return null;
     }
     
-    //Obtener el nom,bre del dia
-    private String nombreDia(int diaSemana) {
+    //Obtener el nombre del dia
+    public String nombreDia(int diaSemana) {
         switch (diaSemana) {
             case 1:
                 return "Lunes";
@@ -62,7 +59,7 @@ public class Auditorio {
 
 //Menu de reservas del Auditorio:
     public void auditorio() {
-        int reservaAuditorio = Integer.parseInt(JOptionPane.showInputDialog("Indique la actividad a reservar: \n[ 1 ]- Charlas (10:00am).\n [ 2 ]- Capacitacion (3:00pm).\n [ 3 ]- Regresar al menu anterior.\n "));
+        int reservaAuditorio = Integer.parseInt(JOptionPane.showInputDialog("Indique la actividad a reservar: \n 1. - Charlas (10:00am).\n 2. - Capacitacion (3:00pm).\n 3. - Regresar al menu anterior.\n "));
 
         switch (reservaAuditorio) {
             case 1:
@@ -76,7 +73,7 @@ public class Auditorio {
             case 3:
                 return;
             default:
-                JOptionPane.showConfirmDialog(null, "Opcion incorrecta.\n Por favor intentelo nuevamente. [1 - 3]", "Atencion!", JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showConfirmDialog(null, "⚠️Opcion incorrecta.⚠️\n Por favor intentelo nuevamente. [1 - 3]", "Atencion!", JOptionPane.WARNING_MESSAGE);
                 auditorio();
                 break;
         }
@@ -87,11 +84,11 @@ public class Auditorio {
     public void Charlas() {
         int diaSemana;
         while (true) {
-            diaSemana = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el día de la semana para la reserva [1 - 5]: \n**1 es Lunes y 5 es Viernes:"));
+            diaSemana = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el día de la semana para la reserva [1 - 5]: \n*1 es Lunes y 5 es Viernes:"));
 
             // Validación del día de la semana
             if (diaSemana < 1 || diaSemana > 5) {
-                JOptionPane.showMessageDialog(null, "Error: El día debe estar entre 1 (Lunes) y 5 (Viernes). Intente nuevamente.");
+                JOptionPane.showMessageDialog(null, "⚠️Error⚠️: \nEl día debe estar entre 1 (Lunes) y 5 (Viernes). \nIntente nuevamente.");
             } else {
                 break;
             }
@@ -136,14 +133,14 @@ public class Auditorio {
             reservas[contadorReservas][1] = empleadoReserva;
             reservas[contadorReservas][2] = String.valueOf(cantResCharla);
             reservas[contadorReservas][3] = "Charlas";
-            reservas[contadorReservas][4] = "Día " + (diaSemana + 1);
+            reservas[contadorReservas][4] = "Día " + (diaSemana);
             contadorReservas++;
         }
 
         //Mensaje de confirmacion:
         String diaNombre = nombreDia(diaSemana);
         JOptionPane.showMessageDialog(null, "Creando reserva...");
-        JOptionPane.showMessageDialog(null, "Reserva realizada con exito! \n\nInformacion de la reserva: \n-Codigo de Reserva: " + idEmpleado + "\n-Nombre: " + empleadoReserva + "\nActividad: Charla (10:00am) \n-Dia: " + diaNombre + "\n-Cantidad de Espacios: " + cantResCharla + "\n\n*Espacios Ocupados: " + ocupCharlasxDia[diaSemana] + "/" + cmCharla + ".*");
+        JOptionPane.showMessageDialog(null, "Reserva realizada con exito! \n\nInformacion de la reserva: \n\n- Codigo de Reserva: " + idEmpleado + "\n- Nombre: " + empleadoReserva + "\n- Actividad: Charla (10:00am) \n- Dia: " + diaNombre + "\n- Cantidad de Espacios: " + cantResCharla + "\n\n*Espacios Ocupados: " + ocupCharlasxDia[diaSemana] + "/" + cmCharla + ".*");
 
     }
 
@@ -159,7 +156,7 @@ public class Auditorio {
     public void Capacitaciones() {
         int diaSemana;
         while (true) {
-            diaSemana = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el día de la semana para la reserva [1 - 5]: \n**1 es Lunes y 5 es Viernes:"));
+            diaSemana = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el día de la semana para la reserva [1 - 5]: \n1 es Lunes y 5 es Viernes:"));
 
             // Validación del día de la semana
             if (diaSemana < 1 || diaSemana > 5) {
@@ -204,7 +201,7 @@ public class Auditorio {
         //Mensaje de confirmacion:
         String diaNombre = nombreDia(diaSemana);
         JOptionPane.showMessageDialog(null, "Creando reserva...");
-        JOptionPane.showMessageDialog(null, "Reserva realizada con exito! \n\nInformacion de la reserva: \n-Codigo de Reserva: " + idEmpleado + "\n-Nombre: " + empleadoReserva + "\nActividad: Capacitacion (3:00pm) \n-Dia: " + diaNombre + "\n-Cantidad de Espacios: " + cantResCapacitacion + "\n\n*Espacios Ocupados: " + ocupCapacitacionesxDia[diaSemana] + "/" + cmCapacitacion + ".*");
+        JOptionPane.showMessageDialog(null, "Reserva realizada con exito! \n\nInformacion de la reserva: \n\n- Codigo de Reserva: " + idEmpleado + "\n- Nombre: " + empleadoReserva + "\n- Actividad: Capacitacion (3:00pm) \n- Dia: " + diaNombre + "\n- Cantidad de Espacios: " + cantResCapacitacion + "\n\n*Espacios Ocupados: " + ocupCapacitacionesxDia[diaSemana] + "/" + cmCapacitacion + ".*");
     }
 
 }

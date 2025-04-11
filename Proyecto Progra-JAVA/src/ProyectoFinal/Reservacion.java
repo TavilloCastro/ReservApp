@@ -1,25 +1,21 @@
 package ProyectoFinal;
 
-/*
-Aqui se deberan efectuar las reservaciones y visibilidad de las mismas. 
- */
 import javax.swing.JOptionPane;
 
 public class Reservacion {
 
     //Referencias:
-    Auditorio auditorio = new Auditorio();
+    private Auditorio auditorio;
     salaReuniones salaDeReuniones = new salaReuniones();
     SistemaReservas sistemaReservas = new SistemaReservas();
     SistemaRecreativo sistemaRecreativo = new SistemaRecreativo();
 
-    //Metodo para llamar la clase Reservacion
-    public Reservacion() {
-    }
-
+   public Reservacion(Auditorio auditorio){
+       this.auditorio = auditorio;
+   }
     //Crea una reserva:
     public void reservar() {
-        int amenidad = Integer.parseInt(JOptionPane.showInputDialog("Indique la amenidad a reservar: \n [ 1 ]- Parqueo.\n [ 2 ]- Cubiculo.\n [ 3 ]- Auditorio.\n [ 4 ]- Salon Insonoro.\n [ 5 ]- Zona Recreativa.\n [ 6 ]- Volver al menu principal."));
+        int amenidad = Integer.parseInt(JOptionPane.showInputDialog("Indique la amenidad a reservar: \n 1. - Parqueo.\n 2. - Cubiculo.\n 3. - Auditorio.\n 4. - Salon Insonoro.\n 5. - Zona Recreativa.\n 6. - Volver al menu principal."));
         switch (amenidad) {
             /*case 1:
                 metodoParqueo;
@@ -54,11 +50,10 @@ public class Reservacion {
                     JOptionPane.showMessageDialog(null, "No fue posible realizar la reserva.", "Error", JOptionPane.WARNING_MESSAGE);
                 }
                 break;
-            /*case 6:
-                menuPrincipal.menuInicial();
-                break;*/
+            case 6:
+                return; //vuelve al menu principal.
             default:
-                JOptionPane.showMessageDialog(null, "Opcion incorrecta. \nPor favor intentelo nuevamente [ 1 - 6 ]");
+                JOptionPane.showMessageDialog(null, "⚠️Opcion incorrecta.⚠️ \nPor favor intentelo nuevamente [ 1 - 6 ]");
                 reservar();
                 break;
 

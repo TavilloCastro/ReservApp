@@ -1,6 +1,3 @@
-/*
- Informacion de los usuarios. 
- */
 package ProyectoFinal;
 
 import javax.swing.JOptionPane;
