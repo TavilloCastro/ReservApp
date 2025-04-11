@@ -9,6 +9,9 @@ public class Reservacion {
 
     //Referencias:
     Auditorio auditorio = new Auditorio();
+    salaReuniones salaDeReuniones = new salaReuniones();
+    SistemaReservas sistemaReservas = new SistemaReservas();
+    SistemaRecreativo sistemaRecreativo = new SistemaRecreativo();
 
     //Metodo para llamar la clase Reservacion
     public Reservacion() {
@@ -27,13 +30,31 @@ public class Reservacion {
             case 3:
                 auditorio.auditorio();
                 break;
-            /*case 4:
-                metodoSalonInsonoro();
+            case 4:
+                sistemaReservas.mostrarSalasDisponibles();
+                int capacidadDeseada = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la capacidad de la sala que desea reservar (5, 10, 15, 20):"));
+                int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID de empleado:"));
+
+                salaReuniones salaSeleccionada = sistemaReservas.buscarSalaPorCapacidad(capacidadDeseada);
+
+                if (salaSeleccionada != null) {
+                    salaSeleccionada.reservar(idEmpleado);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No hay salas disponibles con esa capacidad en este momento.", "Reserva Fallida", JOptionPane.WARNING_MESSAGE);
+                }
                 break;
             case 5:
-                metodoZonaRecreativa();
+                sistemaRecreativo.mostrarZonasDisponibles();
+                String idZona = JOptionPane.showInputDialog("Ingrese el ID de la zona que desea reservar:");
+                int idEmpleadoZona = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID de empleado:"));
+                String hora = JOptionPane.showInputDialog("Ingrese la hora de la reserva (por ejemplo: 14:00):");
+
+                boolean reservado = sistemaRecreativo.reservarZona(idZona, idEmpleadoZona, hora);
+                if (!reservado) {
+                    JOptionPane.showMessageDialog(null, "No fue posible realizar la reserva.", "Error", JOptionPane.WARNING_MESSAGE);
+                }
                 break;
-            case 6:
+            /*case 6:
                 menuPrincipal.menuInicial();
                 break;*/
             default:
