@@ -10,43 +10,116 @@ public class CancelarReservas {
         this.auditorio = auditorio;
     }
 
-    public void cancelar() {
+    public void cancelarModificar() {
+        int caso = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique la opcion a modificar: \n 1. - Reservaciones de Parqueo. \n 2. - Reservaciones de Cubiculos.\n 3. - Reservaciones de Auditorio.\n 4. - Reservaciones de Salon Insonoro.\n 5. - Reservaciones de Zonas Recreativas.\n 6. - Regreser al menu anterior."));
+        switch(caso){
+            case 1:
+                //reservaciones de parqueo
+                cancelarModificar();
+                break;
+            case 2:
+                //reservaciones de cubiculos
+                cancelarModificar();
+            case 3:
+                cancelarModificarAuditorio();
+                cancelarModificar();
+                break;
+            case 4:
+                //reservaciones de salones insonoros
+                cancelarModificar();
+                break;
+            case 5:
+                //reservaciones zonas recreativas
+                cancelarModificar();
+            case 6:
+                return; //regresa al menu anterior
+            default:
+                JOptionPane.showMessageDialog(null,"Opcion incorrecta. \nPor favor intentelo de nuevo.");
+                cancelarModificar();
+                break;
+        }
+    }
+
+    //Cancela o modifica las reservas del auditorio
+    public void cancelarModificarAuditorio() {
         String nombre = JOptionPane.showInputDialog("Ingrese su nombre para buscar su reserva:");
-
         boolean encontrada = false;
-
+        
+        //Busca la reserva por el nombre
         for (int i = 0; i < auditorio.getContadorReservas(); i++) {
             if (auditorio.getReservas()[i][1].equalsIgnoreCase(nombre)) {
                 encontrada = true;
+                
+                
+                
+                //Informacion de la reserva
+                String diaTexto = auditorio.getReservas()[i][4];
+                int numeroDia = Integer.parseInt(diaTexto.split(" ")[1]);
+                String nombreDelDia = auditorio.nombreDia(numeroDia);
+                
+                String detalle = "Se encontro la siguiente reserva: \n\n"
+                        + "- Código: " + auditorio.getReservas()[i][0]
+                        + "\n- Nombre: " + auditorio.getReservas()[i][1]
+                        + "\n- Cantidad de Espacios: " + auditorio.getReservas()[i][2]
+                        + "\n- Tipo: " + auditorio.getReservas()[i][3]
+                        + "\n- Día: " + nombreDelDia;
+                
+                //Consulta si modifica o cancelar
+                Object[] opciones = {"Eliminar", "Modificar", "Salir"};
+                int opcion = JOptionPane.showOptionDialog(null, detalle + "\n\n¿Qué desea hacer?",
+                        "Gestión de Reserva", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,
+                        null, opciones, opciones[2]);
 
-                String detalle = "¿Desea cancelar esta reserva?\n\n"
-                        + "Código: " + auditorio.getReservas()[i][0]
-                        + "\nNombre: " + auditorio.getReservas()[i][1]
-                        + "\nCantidad de espacios: " + auditorio.getReservas()[i][2]
-                        + "\nTipo: " + auditorio.getReservas()[i][3]
-                        + "\nDía: " + auditorio.getReservas()[i][4];
+                int cantidadActual = Integer.parseInt(auditorio.getReservas()[i][2]);
+                int dia = Integer.parseInt(auditorio.getReservas()[i][4].split(" ")[1]) - 1;
 
-                int confirmacion = JOptionPane.showConfirmDialog(null, detalle, "Confirmar Cancelación", JOptionPane.YES_NO_OPTION);
-
-                if (confirmacion == JOptionPane.YES_OPTION) {
-                    int cantidad = Integer.parseInt(auditorio.getReservas()[i][2]);
-                    int dia = Integer.parseInt(auditorio.getReservas()[i][4].split(" ")[1]) - 1;
-
+                //Cancelar reserva
+                if (opcion == 0) { 
                     if (auditorio.getReservas()[i][3].equals("Charlas")) {
-                        auditorio.getOcupCharlasxDia()[dia] -= cantidad;
-                    } else if (auditorio.getReservas()[i][3].equals("Capacitacion")) {
-                        auditorio.getOcupCapacitacionesxDia()[dia] -= cantidad;
+                        auditorio.getOcupCharlasxDia()[dia] -= cantidadActual;
+                    } else if (auditorio.getReservas()[i][3].equals("Capacitaciones")) {
+                        auditorio.getOcupCapacitacionesxDia()[dia] -= cantidadActual;
                     }
 
-                    // Reacomodar las reservas
+                    // Actualiza informacion
                     for (int j = i; j < auditorio.getContadorReservas() - 1; j++) {
                         auditorio.getReservas()[j] = auditorio.getReservas()[j + 1];
                     }
 
                     auditorio.getReservas()[auditorio.getContadorReservas() - 1] = new String[5];
-                    auditorio.setContadorReservas(auditorio.getContadorReservas() -1);
+                    auditorio.setContadorReservas(auditorio.getContadorReservas() - 1);
 
                     JOptionPane.showMessageDialog(null, "Reserva cancelada exitosamente.");
+                    return;
+                    
+                    //Modifica la reserva
+                } else if (opcion == 1) {
+                    String nuevaCantidadStr = JOptionPane.showInputDialog("Ingrese la nueva cantidad de espacios:");
+                    int nuevaCantidad = Integer.parseInt(nuevaCantidadStr);
+
+                    int diferencia = nuevaCantidad - cantidadActual;
+
+                    if (auditorio.getReservas()[i][3].equals("Charlas")) {
+                        if (auditorio.getOcupCharlasxDia()[dia] + diferencia <= 50 && auditorio.getOcupCharlasxDia()[dia] + diferencia >= 0) {
+                            auditorio.getOcupCharlasxDia()[dia] += diferencia;
+                            auditorio.getReservas()[i][2] = String.valueOf(nuevaCantidad);
+                            JOptionPane.showMessageDialog(null, "Reserva modificada exitosamente.");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No hay suficientes espacios disponibles para modificar la reserva.");
+                        }
+                    } else if (auditorio.getReservas()[i][3].equals("Capacitaciones")) {
+                        if (auditorio.getOcupCapacitacionesxDia()[dia] + diferencia <= 30 && auditorio.getOcupCapacitacionesxDia()[dia] + diferencia >= 0) {
+                            auditorio.getOcupCapacitacionesxDia()[dia] += diferencia;
+                            auditorio.getReservas()[i][2] = String.valueOf(nuevaCantidad);
+                            JOptionPane.showMessageDialog(null, "Reserva modificada exitosamente.");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "No hay suficientes espacios disponibles para modificar la reserva.");
+                        }
+                    }
+
+                    return;
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se realizó ninguna acción.");
                     return;
                 }
             }
@@ -54,7 +127,8 @@ public class CancelarReservas {
 
         if (!encontrada) {
             JOptionPane.showMessageDialog(null, "No se encontró ninguna reserva con el nombre proporcionado.");
+
         }
     }
-}
 
+}

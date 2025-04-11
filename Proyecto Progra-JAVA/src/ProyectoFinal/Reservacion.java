@@ -29,7 +29,7 @@ public class Reservacion {
             case 4:
                 sistemaReservas.mostrarSalasDisponibles();
                 int capacidadDeseada = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la capacidad de la sala que desea reservar (5, 10, 15, 20):"));
-                int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID de empleado:"));
+                 int idEmpleado = Integer.parseInt(JOptionPane.showInputDialog("Ingrese su ID de empleado:"));
 
                 salaReuniones salaSeleccionada = sistemaReservas.buscarSalaPorCapacidad(capacidadDeseada);
 

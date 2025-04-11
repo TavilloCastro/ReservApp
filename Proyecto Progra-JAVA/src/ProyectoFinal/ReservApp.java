@@ -8,7 +8,8 @@ public class ReservApp {
         Auditorio auditorio = new Auditorio();
         Reservacion reserva = new Reservacion(auditorio);
         MostrarReservas mostrarReservas = new MostrarReservas(auditorio);
-        MenuPrincipal menuInicio = new MenuPrincipal(auditorio, reserva, mostrarReservas);
+        CancelarReservas cancelarReservas = new CancelarReservas(auditorio);
+        MenuPrincipal menuInicio = new MenuPrincipal(auditorio, reserva, mostrarReservas, cancelarReservas);
         menuInicio.mensajeBienvenida();
         menuInicio.menuInicial();
     }

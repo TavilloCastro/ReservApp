@@ -9,11 +9,13 @@ public class MenuPrincipal {
     private Reservacion reserva;
     private Empleado empleado = new Empleado("", "", "", "");
     private MostrarReservas mostrarReservas;
+    private CancelarReservas cancelarReservas;
 
-    public MenuPrincipal(Auditorio auditorio, Reservacion reserva, MostrarReservas mostrarReservas) {
+    public MenuPrincipal(Auditorio auditorio, Reservacion reserva, MostrarReservas mostrarReservas, CancelarReservas cancelarReservas) {
         this.auditorio = auditorio;
         this.reserva = reserva;
         this.mostrarReservas = mostrarReservas;
+        this.cancelarReservas = cancelarReservas;
     }
     
     //Metodo para terminar el programa:
@@ -23,7 +25,7 @@ public class MenuPrincipal {
 
     //Mensaje de bienvenida:
     public void mensajeBienvenida() {
-        JOptionPane.showMessageDialog(null, "Bienvenid@s al sistema de Reservas\n"
+        JOptionPane.showMessageDialog(null, "Bienvenid@ al Sistema de Reservas\n"
                 + "           [  ReservApp  ]");
     }
 
@@ -37,7 +39,7 @@ public class MenuPrincipal {
                 menuInicial();
                 break;
             case 2:
-               
+               cancelarReservas.cancelarModificar();
                 menuInicial();
                 break;
             case 3:

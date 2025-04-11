@@ -59,7 +59,7 @@ public class Auditorio {
 
 //Menu de reservas del Auditorio:
     public void auditorio() {
-        int reservaAuditorio = Integer.parseInt(JOptionPane.showInputDialog("Indique la actividad a reservar: \n 1. - Charlas (10:00am).\n 2. - Capacitacion (3:00pm).\n 3. - Regresar al menu anterior.\n "));
+        int reservaAuditorio = Integer.parseInt(JOptionPane.showInputDialog("Indique la actividad a reservar: \n 1. - Charla (10:00am).\n 2. - Capacitacion (3:00pm).\n 3. - Regresar al menu anterior.\n "));
 
         switch (reservaAuditorio) {
             case 1:
@@ -84,7 +84,7 @@ public class Auditorio {
     public void Charlas() {
         int diaSemana;
         while (true) {
-            diaSemana = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el día de la semana para la reserva [1 - 5]: \n*1 es Lunes y 5 es Viernes:"));
+            diaSemana = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el día de la semana para la reserva [1 - 5]: \n[1 es Lunes y 5 es Viernes]"));
 
             // Validación del día de la semana
             if (diaSemana < 1 || diaSemana > 5) {
