@@ -6,22 +6,29 @@ public class Reservacion {
 
     //Referencias:
     private Auditorio auditorio;
+    private Parqueos parqueo;
     salaReuniones salaDeReuniones = new salaReuniones();
     SistemaReservas sistemaReservas = new SistemaReservas();
     SistemaRecreativo sistemaRecreativo = new SistemaRecreativo();
 
-   public Reservacion(Auditorio auditorio){
+   public Reservacion(Auditorio auditorio, Parqueos parqueo){
        this.auditorio = auditorio;
+        this.parqueo = parqueo;
+       
    }
     //Crea una reserva:
     public void reservar() {
         int amenidad = Integer.parseInt(JOptionPane.showInputDialog("Indique la amenidad a reservar: \n 1. - Parqueo.\n 2. - Cubiculo.\n 3. - Auditorio.\n 4. - Salon Insonoro.\n 5. - Zona Recreativa.\n 6. - Volver al menu principal."));
         switch (amenidad) {
-            /*case 1:
-                metodoParqueo;
+            case 1:
+                parqueo.mostrarDisponibilidad();
+                int nivel = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel [1-S1, 2-S2, 3-S3]:"));
+                int fila = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la fila del espacio:"));
+                int columna = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la columna del espacio:"));
+                parqueo.reservarParqueo(nivel, fila, columna);
                 break;
             case 2:
-                metodoCubiculo();
+               /*metodoCubiculo();
                 break;*/
             case 3:
                 auditorio.auditorio();

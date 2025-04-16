@@ -5,17 +5,23 @@ import javax.swing.JOptionPane;
 public class CancelarReservas {
 
     private Auditorio auditorio;
-
-    public CancelarReservas(Auditorio auditorio) {
+    private Parqueos parqueo;
+    
+    
+    public CancelarReservas(Auditorio auditorio, Parqueos parqueo) {
         this.auditorio = auditorio;
+        this.parqueo = parqueo;
     }
 
     public void cancelarModificar() {
         int caso = Integer.parseInt(JOptionPane.showInputDialog(null, "Indique la opcion a modificar: \n 1. - Reservaciones de Parqueo. \n 2. - Reservaciones de Cubiculos.\n 3. - Reservaciones de Auditorio.\n 4. - Reservaciones de Salon Insonoro.\n 5. - Reservaciones de Zonas Recreativas.\n 6. - Regreser al menu anterior."));
         switch(caso){
             case 1:
-                //reservaciones de parqueo
-                cancelarModificar();
+                parqueo.mostrarDisponibilidad();
+                int nivel = Integer.parseInt(JOptionPane.showInputDialog("Ingrese el nivel del parqueo [1-S1, 2-S2, 3-S3]:"));
+                int fila = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la fila del espacio a liberar:"));
+                int columna = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la columna del espacio a liberar:"));
+                parqueo.liberarParqueo(nivel, fila, columna);
                 break;
             case 2:
                 //reservaciones de cubiculos
