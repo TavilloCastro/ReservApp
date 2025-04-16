@@ -4,8 +4,10 @@ import javax.swing.JOptionPane;
 
 public class MostrarReservas {
     private Auditorio auditorio;
-    public MostrarReservas(Auditorio auditorio){
+     private Parqueos parqueo;
+    public MostrarReservas(Auditorio auditorio,Parqueos parqueo){
         this.auditorio = auditorio;
+        this.parqueo = parqueo;
     }
 
        //Menu para mostrar reservas
@@ -13,8 +15,7 @@ public class MostrarReservas {
         int opcion = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la opcion que desea consultar: \n 1. - Reservaciones de Parqueo. \n 2. - Reservaciones de Cubiculos.\n 3. - Reservaciones de Auditorio.\n 4. - Reservaciones de Salon Insonoro.\n 5. - Reservaciones de Zonas Recreativas.\n 6. - Regreser al menu anterior."));
         switch (opcion) {
             case 1:
-                //reservaciones parqueo
-                //mostrarReservas();
+                parqueo.mostrarDisponibilidad();
                 break;
             case 2:
             //reservacion cubiculos
