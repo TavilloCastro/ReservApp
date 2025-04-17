@@ -15,10 +15,10 @@ public class SistemaReservas {
 
     public SistemaReservas() {
         salas = new salaReuniones[4]; // 4 salas fijas
-        salas[0] = new salaReuniones("S001", "Piso 1", true, 5);
-        salas[1] = new salaReuniones("S002", "Piso 2", true, 10);
-        salas[2] = new salaReuniones("S003", "Piso 3", true, 15);
-        salas[3] = new salaReuniones("S004", "Piso 4", true, 20);
+        salas[0] = new salaReuniones("Tamarindo", "1", true, 5);
+        salas[1] = new salaReuniones("Uvita", "2", true, 10);
+        salas[2] = new salaReuniones("MonteVerde", "3", true, 15);
+        salas[3] = new salaReuniones("Puerto Viejo", "4", true, 20);
     }
 
     public salaReuniones buscarSalaPorCapacidad(int capacidad) {
@@ -27,29 +27,34 @@ public class SistemaReservas {
                 return salas[i];
             }
         }
-        return null; // No hay salas disponibles con esa capacidad
+        return null; 
+    }
+    public void salonReservas() {
+    StringBuilder mensaje = new StringBuilder("Salas reservadas:\n");
+    boolean hayReservas = false;
+
+    for (salaReuniones sala : salas) {
+        if (!sala.isDisponibilidad()) {
+            mensaje.append("Nombre: ").append(sala.getIdSala())
+                   .append(" | Capacidad: ").append(sala.getCapacidad())
+                   .append(" | Ubicación: ").append(sala.getUbicacion()).append("\n");
+            hayReservas = true;
+        }
+    }
     }
     
-    // Método para cancelar una reserva por ID de sala
-    public void cancelarReserva(String idSala) {
-        for (salaReuniones sala : salas) {
-            if (sala.getIdSala().equals(idSala)) {
-                sala.cancelarReserva();
-                return;
-            }
-        }
-        JOptionPane.showMessageDialog(null, "No se encontró la sala con ID: " + idSala, "Error", JOptionPane.ERROR_MESSAGE);
-    }
+    
+    
 
-    // Método para mostrar salas disponibles
+    
     public void mostrarSalasDisponibles() {
         StringBuilder mensaje = new StringBuilder("Salas disponibles:\n");
 
         for (salaReuniones sala : salas) {
             if (sala.isDisponibilidad()) {
-                mensaje.append("ID: ").append(sala.getIdSala())
+                mensaje.append("Nombre: ").append(sala.getIdSala())
                        .append(" | Capacidad: ").append(sala.getCapacidad())
-                       .append(" | Ubicación: ").append(sala.getUbicacion()).append("\n");
+                       .append(" | Numero de salon: ").append(sala.getUbicacion()).append("\n");
             }
         }
 

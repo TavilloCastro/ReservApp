@@ -38,7 +38,7 @@ public class zonaRecreativa {
         }
     }
 
-    // Método para cancelar reserva
+    
     public void cancelarReserva() {
         if (!disponibilidad) {
             JOptionPane.showMessageDialog(null, "La reserva de la zona " + tipo + " (" + idZona + ") ha sido cancelada. Estaba reservada por el empleado con ID: " + idEmpleadoReservado);
@@ -46,7 +46,7 @@ public class zonaRecreativa {
             horaReservada = "";
             idEmpleadoReservado = 0;
         } else {
-            JOptionPane.showMessageDialog(null, "La zona " + tipo + " (" + idZona + ") no estaba reservada.", "Cancelación Fallida", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null, "La zona " + tipo + " (" + idZona + ") no estaba reservada.", "Cancelacion Fallida", JOptionPane.WARNING_MESSAGE);
         }
     }
 

@@ -23,20 +23,20 @@ public class SistemaRecreativo {
     private void inicializarZonas() {
         // Inicializar las zonas recreativas de acuerdo al número total que tenemos (9 en este caso)
         if (totalZonas < 9) {
-            zonas[totalZonas++] = new zonaRecreativa("B001", "Billar", "Piso 1");
-            zonas[totalZonas++] = new zonaRecreativa("B002", "Billar", "Piso 1");
-            zonas[totalZonas++] = new zonaRecreativa("PP01", "Ping-Pong", "Piso 2");
-            zonas[totalZonas++] = new zonaRecreativa("F001", "Futbolín", "Piso 2");
-            zonas[totalZonas++] = new zonaRecreativa("F002", "Futbolín", "Piso 2");
-            zonas[totalZonas++] = new zonaRecreativa("F003", "Futbolín", "Piso 2");
-            zonas[totalZonas++] = new zonaRecreativa("T001", "Tenis", "Área Deportiva");
-            zonas[totalZonas++] = new zonaRecreativa("F5001", "Fútbol 5", "Cancha Exterior");
-            zonas[totalZonas++] = new zonaRecreativa("R001", "Rancho", "Jardín");
+            zonas[totalZonas++] = new zonaRecreativa("ACB1", "Billar", "Area comun");
+            zonas[totalZonas++] = new zonaRecreativa("ACB2", "Billar", "Area comun");
+            zonas[totalZonas++] = new zonaRecreativa("CPP1", "Ping-Pong", "Comedor");
+            zonas[totalZonas++] = new zonaRecreativa("ACF1", "Futbolin", "Area comun");
+            zonas[totalZonas++] = new zonaRecreativa("ACF2", "Futbolin", "Area comun");
+            zonas[totalZonas++] = new zonaRecreativa("CF1", "Futbolin", "Comedor");
+            zonas[totalZonas++] = new zonaRecreativa("ET1", "Tenis", "Exterior");
+            zonas[totalZonas++] = new zonaRecreativa("EF1", "Fútbol 5", "Exterior");
+            zonas[totalZonas++] = new zonaRecreativa("TR1", "Rancho", "Terraza");
             
         }
     }
 
-    // Método para mostrar las zonas disponibles
+    
     public void mostrarZonasDisponibles() {
         StringBuilder mensaje = new StringBuilder("Zonas Disponibles:\n");
         for (int i = 0; i < totalZonas; i++) {
@@ -46,8 +46,9 @@ public class SistemaRecreativo {
         }
         JOptionPane.showMessageDialog(null, mensaje.toString(), "Zonas Disponibles", JOptionPane.INFORMATION_MESSAGE);
     }
+    
 
-    // Método para reservar una zona recreativa
+    
     public boolean reservarZona(String idZona, int idEmpleado, String hora) {
         for (int i = 0; i < totalZonas; i++) {
             if (zonas[i].getIdZona().equals(idZona)) {
@@ -57,17 +58,25 @@ public class SistemaRecreativo {
         JOptionPane.showMessageDialog(null, "Zona no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
-
-    // Método para cancelar la reserva de una zona recreativa
-    public void cancelarReserva(String idZona) {
-        for (int i = 0; i < totalZonas; i++) {
-            if (zonas[i].getIdZona().equals(idZona)) {
-                zonas[i].cancelarReserva();
-                return;
+    public void zonaReservas(){
+        String mensaje = "Zonas Reservadas: \n";
+        boolean hayReservas = false;
+        for(int i=0; i < totalZonas; i++){
+            if(!zonas[i].isDisponibilidad()){
+                mensaje += "ID: " + zonas[i].getIdZona()
+                        + " | Tipo: " + zonas[i].getTipo()
+                        + " | Numero: " + zonas[i].getUbicacion()
+                        + " | Hora: " + zonas[i].getHoraReservada()
+                        + " | ID Empleado: " + zonas[i].getIdEmpleadoReservado()
+                        + " \n";
+                hayReservas = true;
+                       
             }
         }
-        JOptionPane.showMessageDialog(null, "Zona no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
+
+    
+
     
 
