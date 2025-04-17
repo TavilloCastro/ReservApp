@@ -4,10 +4,14 @@ import javax.swing.JOptionPane;
 
 public class MostrarReservas {
     private Auditorio auditorio;
-     private Parqueos parqueo;
-    public MostrarReservas(Auditorio auditorio,Parqueos parqueo){
+    private Parqueos parqueo;
+    private SistemaCubiculos sistemaCubiculos;
+
+    public MostrarReservas(Auditorio auditorio,Parqueos parqueo, SistemaCubiculos sistemaCubiculos){
         this.auditorio = auditorio;
         this.parqueo = parqueo;
+        this.sistemaCubiculos = sistemaCubiculos;
+
     }
 
        //Menu para mostrar reservas
@@ -17,9 +21,9 @@ public class MostrarReservas {
             case 1:
                 parqueo.mostrarDisponibilidad();
                 break;
-            case 2:
-            //reservacion cubiculos
-            //mostrarReservas();
+            case 2: // Cubiculo
+                sistemaCubiculos.mostrarReservasCubiculos();
+                break;
             case 3:
                 reservasAuditorio(auditorio);
                 mostrarReservas();

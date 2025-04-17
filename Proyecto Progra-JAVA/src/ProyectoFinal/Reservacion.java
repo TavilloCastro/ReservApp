@@ -7,13 +7,16 @@ public class Reservacion {
     //Referencias:
     private Auditorio auditorio;
     private Parqueos parqueo;
+    private SistemaCubiculos sistemaCubiculos;
     salaReuniones salaDeReuniones = new salaReuniones();
     SistemaReservas sistemaReservas = new SistemaReservas();
     SistemaRecreativo sistemaRecreativo = new SistemaRecreativo();
 
-   public Reservacion(Auditorio auditorio, Parqueos parqueo){
+   public Reservacion(Auditorio auditorio, Parqueos parqueo, SistemaCubiculos sistemaCubiculos){
        this.auditorio = auditorio;
-        this.parqueo = parqueo;
+       this.parqueo = parqueo;
+       this.sistemaCubiculos = sistemaCubiculos;
+
        
    }
     //Crea una reserva:
@@ -27,9 +30,9 @@ public class Reservacion {
                 int columna = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la columna del espacio:"));
                 parqueo.reservarParqueo(nivel, fila, columna);
                 break;
-            case 2:
-               /*metodoCubiculo();
-                break;*/
+            case 2: // Cubiculo
+                this.sistemaCubiculos.reservarCubiculo(); //Llama a sistemaCubiculos.reservarCubiculo.. para iniciar el proceso de reserva.
+                break;
             case 3:
                 auditorio.auditorio();
                 break;

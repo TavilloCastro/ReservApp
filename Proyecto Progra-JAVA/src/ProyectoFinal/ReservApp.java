@@ -6,9 +6,10 @@ public class ReservApp {
     public static void main(String[] args) {
         Auditorio auditorio = new Auditorio();
         Parqueos parqueo = new Parqueos(); 
-        Reservacion reserva = new Reservacion(auditorio,parqueo);
-        MostrarReservas mostrarReservas = new MostrarReservas(auditorio,parqueo);
-        CancelarReservas cancelarReservas = new CancelarReservas(auditorio,parqueo);
+        SistemaCubiculos sistemaCubiculos = new SistemaCubiculos();      
+        Reservacion reserva = new Reservacion(auditorio,parqueo, sistemaCubiculos);
+        MostrarReservas mostrarReservas = new MostrarReservas(auditorio,parqueo, sistemaCubiculos);
+        CancelarReservas cancelarReservas = new CancelarReservas(auditorio,parqueo, sistemaCubiculos);
         MenuPrincipal menuInicio = new MenuPrincipal(auditorio, reserva, mostrarReservas, cancelarReservas);
         menuInicio.mensajeBienvenida();
         menuInicio.menuInicial();

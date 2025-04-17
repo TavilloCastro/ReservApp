@@ -6,11 +6,14 @@ public class CancelarReservas {
 
     private Auditorio auditorio;
     private Parqueos parqueo;
+    private SistemaCubiculos sistemaCubiculos;
     
     
-    public CancelarReservas(Auditorio auditorio, Parqueos parqueo) {
+    public CancelarReservas(Auditorio auditorio, Parqueos parqueo, SistemaCubiculos sistemaCubiculos) {
         this.auditorio = auditorio;
         this.parqueo = parqueo;
+        this.sistemaCubiculos = sistemaCubiculos;
+
     }
 
     public void cancelarModificar() {
@@ -23,9 +26,9 @@ public class CancelarReservas {
                 int columna = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la columna del espacio a liberar:"));
                 parqueo.liberarParqueo(nivel, fila, columna);
                 break;
-            case 2:
-                //reservaciones de cubiculos
-                cancelarModificar();
+            case 2: // Cubiculo
+                sistemaCubiculos.cancelarReservaCubiculo(); 
+                break;
             case 3:
                 cancelarModificarAuditorio();
                 cancelarModificar();
