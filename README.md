@@ -16,7 +16,7 @@ El proyecto consiste en una aplicacion de reservas para una oficina, el cual per
 
 # Creadores
  - [Gustavo Castro](https://github.com/TavilloCastro)<br/>
- - [Gabriel Gomez](https://github.com/gabgg27)<br/r>
+ - [Gabriel Gomez](https://github.com/gabgg27) 
  - [Bryan Obando](https://github.com/YoshBr) 
  - [Edward Sanchez](https://github.com/alvarado-ed)<br/>
 
