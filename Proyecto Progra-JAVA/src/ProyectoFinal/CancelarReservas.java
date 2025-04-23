@@ -7,12 +7,19 @@ public class CancelarReservas {
     private Auditorio auditorio;
     private Parqueos parqueo;
     private SistemaCubiculos sistemaCubiculos;
+    private salaReuniones salas;
+    private SistemaRecreativo zonas;
     
     
-    public CancelarReservas(Auditorio auditorio, Parqueos parqueo, SistemaCubiculos sistemaCubiculos) {
+    
+    public CancelarReservas(Auditorio auditorio, Parqueos parqueo, SistemaCubiculos sistemaCubiculos, salaReuniones salaReuniones, SistemaRecreativo sistemaRecreativo) {
         this.auditorio = auditorio;
         this.parqueo = parqueo;
         this.sistemaCubiculos = sistemaCubiculos;
+        this.salas = salaReuniones;
+        this.zonas = sistemaRecreativo;
+        
+        
 
     }
 
@@ -34,11 +41,11 @@ public class CancelarReservas {
                 cancelarModificar();
                 break;
             case 4:
-                //reservaciones de salones insonoros
+                salas.cancelarReserva();
                 cancelarModificar();
                 break;
             case 5:
-                //reservaciones zonas recreativas
+                zonas.cancelarZona();
                 cancelarModificar();
             case 6:
                 return; //regresa al menu anterior

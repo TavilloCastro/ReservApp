@@ -6,11 +6,17 @@ public class MostrarReservas {
     private Auditorio auditorio;
     private Parqueos parqueo;
     private SistemaCubiculos sistemaCubiculos;
+    private SistemaReservas sala;
+    private SistemaRecreativo zonas;
+     
 
-    public MostrarReservas(Auditorio auditorio,Parqueos parqueo, SistemaCubiculos sistemaCubiculos){
+    public MostrarReservas(Auditorio auditorio,Parqueos parqueo, SistemaCubiculos sistemaCubiculos, SistemaReservas sistemaReservas, SistemaRecreativo sistemaRecreativo){
         this.auditorio = auditorio;
         this.parqueo = parqueo;
         this.sistemaCubiculos = sistemaCubiculos;
+        this.sala = sistemaReservas;
+        this.zonas = sistemaRecreativo;
+      
 
     }
 
@@ -29,11 +35,11 @@ public class MostrarReservas {
                 mostrarReservas();
                 break;
             case 4:
-                //reservacionSalon
+                sala.salonReservas();
                 mostrarReservas();
                 break;
             case 5:
-                //reservacionZonaRecreativa;
+                zonas.zonaReservas();
                 mostrarReservas();
                 break;
             case 6:

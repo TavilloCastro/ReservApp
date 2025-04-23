@@ -41,6 +41,12 @@ public class SistemaReservas {
             hayReservas = true;
         }
     }
+    
+    }
+
+    @Override
+    public String toString() {
+        return "SistemaReservas{" + "salas=" + salas + '}';
     }
     
     

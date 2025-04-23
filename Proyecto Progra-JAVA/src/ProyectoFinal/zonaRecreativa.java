@@ -39,15 +39,15 @@ public class zonaRecreativa {
     }
 
     
-    public void cancelarReserva() {
-        if (!disponibilidad) {
-            JOptionPane.showMessageDialog(null, "La reserva de la zona " + tipo + " (" + idZona + ") ha sido cancelada. Estaba reservada por el empleado con ID: " + idEmpleadoReservado);
-            disponibilidad = true;
-            horaReservada = "";
-            idEmpleadoReservado = 0;
-        } else {
-            JOptionPane.showMessageDialog(null, "La zona " + tipo + " (" + idZona + ") no estaba reservada.", "Cancelacion Fallida", JOptionPane.WARNING_MESSAGE);
-        }
+    public void cancelar() {
+    this.disponibilidad = true;
+    this.idEmpleadoReservado = 0;
+    this.horaReservada = null;
+}
+
+    @Override
+    public String toString() {
+        return "zonaRecreativa{" + "idZona=" + idZona + ", tipo=" + tipo + ", ubicacion=" + ubicacion + ", disponibilidad=" + disponibilidad + ", horaReservada=" + horaReservada + ", idEmpleadoReservado=" + idEmpleadoReservado + '}';
     }
 
 

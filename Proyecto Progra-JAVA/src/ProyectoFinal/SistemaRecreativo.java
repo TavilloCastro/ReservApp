@@ -58,6 +58,37 @@ public class SistemaRecreativo {
         JOptionPane.showMessageDialog(null, "Zona no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
         return false;
     }
+    public void cancelarZona() {
+    String idZona = JOptionPane.showInputDialog(null, "Ingrese el ID de la zona a cancelar:");
+    if (idZona == null || idZona.isEmpty()) return;
+
+    String inputIdEmpleado = JOptionPane.showInputDialog(null, "Ingrese su ID de empleado:");
+    if (inputIdEmpleado == null || inputIdEmpleado.isEmpty()) return;
+
+    int idEmpleado;
+    try {
+        idEmpleado = Integer.parseInt(inputIdEmpleado);
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "ID de empleado inválido.", "Error", JOptionPane.ERROR_MESSAGE);
+        return;
+    }
+
+    for (int i = 0; i < totalZonas; i++) {
+        if (zonas[i].getIdZona().equals(idZona)) {
+            if (!zonas[i].isDisponibilidad() && zonas[i].getIdEmpleadoReservado() == idEmpleado) {
+                zonas[i].cancelar(); // Método en zonaRecreativa
+                JOptionPane.showMessageDialog(null, "Reserva cancelada con éxito.", "Cancelación", JOptionPane.INFORMATION_MESSAGE);
+                return;
+            } else {
+                JOptionPane.showMessageDialog(null, "No se puede cancelar: la zona no está reservada por este empleado.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
+    }
+
+    JOptionPane.showMessageDialog(null, "Zona no encontrada.", "Error", JOptionPane.ERROR_MESSAGE);
+}
+
     public void zonaReservas(){
         String mensaje = "Zonas Reservadas: \n";
         boolean hayReservas = false;
